@@ -162,15 +162,14 @@ end
 
 desc "Update dependencies (bundler, gems, cocoapods)"
 lane :update_dependencies do
-  sh "gem install bundler"
-  sh "bundle update"
-  sh "bundle exec pod update"
-  sh "bundle exec fastlane snapshot update"
+  sh "cd ..; gem install bundler"
+  sh "cd ..; bundle update"
+  sh "cd ..; bundle exec pod update"
 end
 
 desc "Delete cocoapods from the project and reinstall"
 lane :reintegrate do
-  sh "bundle update"
+  sh "cd ..; bundle update"
   sh "cd ..; bundle exec pod deintegrate PhotoStickers.xcodeproj"
   #sh "bundle exec pod clean"
   cocoapods
